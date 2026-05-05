@@ -1,0 +1,155 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum untuk Role User
+enum Role {
+  ADMIN
+  MEMBER
+}
+
+// Enum untuk Status Kamar
+enum StatusKamar {
+  TERSEDIA
+  BOOKED
+  TERISI
+  MAINTENANCE
+}
+
+// Enum untuk Kost Tujuan
+enum KostTujuan {
+  DAISY
+  CAMELLIA
+}
+
+// Enum untuk Durasi Sewa
+enum DurasiUnit {
+  HARIAN
+  MINGGUAN
+  BULANAN
+}
+
+// Enum untuk Status Pembayaran
+enum StatusPembayaran {
+  PENDING
+  LUNAS
+  DITOLAK
+}
+
+// Enum untuk Status Reservasi
+enum StatusReservasi {
+  MENUNGGU
+  AKTIF
+  SELESAI
+  DIBATALKAN
+}
+
+// Model User
+model User {
+  id            String      @id @default(uuid()) @db.VarChar(36)
+  nama          String      @db.VarChar(100)
+  nama_belakang String?     @db.VarChar(100)
+  email         String      @unique @db.VarChar(150)
+  no_telp       String      @unique @db.VarChar(20)
+  password      String      @db.VarChar(255)
+  foto_ktp      String?     @db.VarChar(255)
+  role          Role        @default(MEMBER)
+  
+  created_at    DateTime    @default(now())
+  updated_at    DateTime    @updatedAt
+
+  reservasi     Reservasi[]
+
+  @@map("users")
+}
+
+// Model Kamar Daisy
+model KamarDaisy {
+  id         Int         @id @default(autoincrement())
+  no_kamar   String      @unique @db.VarChar(20)
+  tipe_kamar      String      @db.VarChar(50)
+  lantai          Int
+  harga_perbulan  Int
+  harga_perminggu Int
+  harga_perhari   Int
+  status          StatusKamar @default(TERSEDIA)
+  
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+
+  reservasi  Reservasi[]
+
+  @@map("kamar_daisy")
+}
+
+// Model Kamar Camellia
+model KamarCamellia {
+  id         Int         @id @default(autoincrement())
+  no_kamar   String      @unique @db.VarChar(20)
+  tipe_kamar      String      @db.VarChar(50)
+  lantai          Int
+  harga_perbulan  Int
+  harga_perminggu Int
+  harga_perhari   Int
+  status          StatusKamar @default(TERSEDIA)
+  
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+
+  reservasi  Reservasi[]
+
+  @@map("kamar_camellia")
+}
+
+// Model Penyewa Kamar (Reservasi)
+model Reservasi {
+  id_reservasi        String           @id @default(uuid()) @db.VarChar(36)
+  
+  // Relasi User
+  id_user             String           @db.VarChar(36)
+  user                User             @relation(fields: [id_user], references: [id], onDelete: Cascade)
+  
+  // Kost yang dipilih
+  kost_tujuan         KostTujuan
+  
+  // Relasi Kamar Daisy (opsional, diisi jika kost_tujuan = DAISY)
+  id_kamar_daisy      Int?
+  kamar_daisy         KamarDaisy?      @relation(fields: [id_kamar_daisy], references: [id], onDelete: SetNull)
+  
+  // Relasi Kamar Camellia (opsional, diisi jika kost_tujuan = CAMELLIA)
+  id_kamar_camellia   Int?
+  kamar_camellia      KamarCamellia?   @relation(fields: [id_kamar_camellia], references: [id], onDelete: SetNull)
+
+  // Detail Sewa
+  tgl_masuk           DateTime         @db.Date
+  tgl_keluar          DateTime?        @db.Date
+  durasi_sewa_unit    DurasiUnit       @default(BULANAN)
+  durasi_sewa_jumlah  Int              @default(1)
+  total_harga         Int              @default(0)
+  
+  // Identitas Penyewa Aktual
+  nama_penyewa        String?          @db.VarChar(150)
+  no_wa_penyewa       String?          @db.VarChar(20)
+  foto_ktp            String?          @db.VarChar(255)
+  
+  // Pembayaran & Status
+  bukti_bayar_dp      String?          @db.VarChar(255)
+  status_pembayaran   StatusPembayaran @default(PENDING)
+  status_reservasi    StatusReservasi  @default(MENUNGGU)
+  
+  created_at          DateTime         @default(now())
+  updated_at          DateTime         @updatedAt
+
+  @@map("penyewa_kamar")
+}
