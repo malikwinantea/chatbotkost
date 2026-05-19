@@ -14,9 +14,9 @@ export interface HeroProps {
 }
 
 function Hero({
-  mainTitle = "Reservasi Kamar Kost Solo Baru",
+  mainTitle = "Reservasi Kamar Kost",
   titles = ["Nyaman", "Aman", "Strategis", "Eksklusif", "Terbaik"],
-  description = "Pilihan hunian kost premium di kawasan Solo Baru. fasilitas terbaik untuk menjamin kenyamanan dan keamanan Anda setiap saat.",
+  description = "Pilihan hunian kost premium. fasilitas terbaik untuk menjamin kenyamanan dan keamanan Anda setiap saat.",
   bgImageUrl = "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&q=80&w=1920"
 }: HeroProps) {
   const [titleNumber, setTitleNumber] = useState(0);

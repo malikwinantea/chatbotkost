@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Sistem Reservasi Kost Solo Baru",
-  description: "Website resmi reservasi kamar Kost Daisy dan Kost Camellia di area Solo Baru.",
+  description: "Website resmi reservasi kamar Kost Daisy dan Kost Camellia.",
 };
 
 export default function RootLayout({

@@ -14,8 +14,8 @@ export default function LandingPage() {
       <section data-aos="fade-up" className="container mx-auto px-4 py-20 text-center max-w-4xl">
         <h2 className="text-3xl font-bold mb-6">Tentang Kami</h2>
         <p className="text-lg text-muted-foreground leading-relaxed">
-          Kami menyediakan pengalaman hunian eksklusif di kawasan Solo Baru.
-          Kost Daisy dan Kost Camellia dirancang secara khusus untuk memenuhi kebutuhan profesional
+          Kami menyediakan pengalaman hunian yang eksklusif.
+          Pilihan Kost ini dirancang secara khusus untuk memenuhi kebutuhan profesional
           serta calon penyewa yang mengutamakan kenyamanan, keamanan, dan privasi.
           Setiap properti kami dikelola secara profesional dengan komitmen penuh pada standar kualitas tinggi.
         </p>
@@ -27,12 +27,12 @@ export default function LandingPage() {
           <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm">
             <MapPin className="h-10 w-10 text-primary mb-4" />
             <h3 className="font-semibold text-xl mb-2">Lokasi Strategis</h3>
-            <p className="text-sm text-muted-foreground">Berada di pusat bisnis, perbelanjaan Solo Baru dan area rumah sakit.</p>
+            <p className="text-sm text-muted-foreground">Berada di pusat bisnis, perbelanjaan dan area rumah sakit.</p>
           </div>
           <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm">
             <Shield className="h-10 w-10 text-primary mb-4" />
             <h3 className="font-semibold text-xl mb-2">Keamanan 24/7</h3>
-            <p className="text-sm text-muted-foreground">Dilengkapi CCTV dan akses khusus penghuni.</p>
+            <p className="text-sm text-muted-foreground">Dilengkapi CCTV.</p>
           </div>
           <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm">
             <Wifi className="h-10 w-10 text-primary mb-4" />
@@ -42,7 +42,7 @@ export default function LandingPage() {
           <div className="flex flex-col items-center text-center p-6 bg-background rounded-lg shadow-sm">
             <Coffee className="h-10 w-10 text-primary mb-4" />
             <h3 className="font-semibold text-xl mb-2">Ruang Bersama</h3>
-            <p className="text-sm text-muted-foreground">Area komunal yang nyaman untuk bersosialisasi dan bekerja.</p>
+            <p className="text-sm text-muted-foreground">Area komunal yang nyaman.</p>
           </div>
         </div>
       </section>
@@ -101,7 +101,7 @@ export default function LandingPage() {
               </div>
               <h2 className="text-4xl font-bold tracking-tight">Kost Camellia</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Pilihan premium untuk Anda yang menginginkan lebih dari sekadar tempat tinggal. Desain modern, ruang lebih luas.
+                Pilihan premium untuk Anda yang menginginkan lebih dari sekadar tempat tinggal. Desain modern, ruang lebih luas di kawasan Solo Baru.
               </p>
               <div className="flex flex-col gap-4 pt-4">
                 <div className="flex items-center gap-4 p-4 rounded-xl border bg-muted/50 transition-colors hover:bg-muted">
